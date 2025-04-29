@@ -1,8 +1,8 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
-<H3>EX. NO.1</H3>
-<H3>DATE</H3>
-<H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
+<H3>Name: Malar Mariam S</H3>
+<H3>Register No: 212223230118</H3>
+<H3>EX.NO - 1</H3>
+<!-- <H3>Date</H3> -->
+<H1 ALIGN =CENTER>Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
 
@@ -29,20 +29,77 @@ Another aspect is that the data set should be formatted in such a way that more 
 
 
 ## ALGORITHM:
-STEP 1:Importing the libraries<BR>
-STEP 2:Importing the dataset<BR>
-STEP 3:Taking care of missing data<BR>
-STEP 4:Encoding categorical data<BR>
-STEP 5:Normalizing the data<BR>
-STEP 6:Splitting the data into test and train<BR>
+#### STEP 1:
+Importing the libraries<BR>
+#### STEP 2:
+Importing the dataset<BR>
+#### STEP 3:
+Taking care of missing data<BR>
+#### STEP 4:
+Encoding categorical data<BR>
+#### STEP 5:
+Normalizing the data<BR>
+#### STEP 6:
+Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+# Step 1: Import Libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 
+# Step 2: Load Dataset
+df = pd.read_csv("/kaggle/input/iris/Iris.csv")
+print(df.head())
+
+# Step 3: Check for Missing Data
+print(df.isnull().sum())
+
+# Step 4: encode categorical data
+encoder = LabelEncoder()
+df['Species'] = encoder.fit_transform(df['Species'])
+df['Species'] = df['Species'].astype(str).map({
+    'Iris-setosa': 0,
+    'Iris-versicolor': 1,
+    'Iris-virginica': 2
+})
+
+# step 5: normalizing the feature columns
+scaler = StandardScaler()
+df[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']] = scaler.fit_transform(
+    df[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
+)
+
+# Step 6: Splitting the data into train and test sets
+X = df[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
+y = df['Species']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print(f"Training Features Shape: {X_train.shape}")
+print(f"Testing Features Shape: {X_test.shape}")
+print(f"Training Target Shape: {y_train.shape}")
+print(f"Testing Target Shape: {y_test.shape}")
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+#### dataset
+![image](https://github.com/user-attachments/assets/bd1d9539-e3ff-4f67-87f4-273eda96ed2f)
 
+#### missing values
+![image](https://github.com/user-attachments/assets/d50baade-e697-4e81-a449-169a3b975ac1)
+
+#### encoded categorical data
+![image](https://github.com/user-attachments/assets/86afb306-6ba2-46ed-a1ef-07833206607a)
+
+![image](https://github.com/user-attachments/assets/3f16f63e-43b0-43b8-a661-275f7e81276c)
+
+#### normalised data
+![image](https://github.com/user-attachments/assets/4fccc35e-2d36-416d-b2aa-67c7c1c6240e)
+
+#### test, train data
+![image](https://github.com/user-attachments/assets/69336e39-d202-4b76-9112-8e5501d5c8b8)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
