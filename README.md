@@ -43,7 +43,8 @@ Normalizing the data<BR>
 Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-```
+
+```py
 # Step 1: Import Libraries
 import pandas as pd
 from sklearn.model_selection import train_test_split
